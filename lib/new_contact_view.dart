@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:state_management/models/contact.dart';
-import 'package:state_management/models/contact_book.dart';
+import 'package:state_management/state/contact_book.dart';
 
 class NewContactView extends StatefulWidget {
   const NewContactView({super.key});
