@@ -12,6 +12,7 @@ class ContactBook extends ValueNotifier<List<Contact>> {
   int get length => _contacts.length;
 
   void add({required Contact contact}) {
+    // value is a getter in ValueNotifier class
     final contacts = value;
     contacts.add(contact);
     notifyListeners();
