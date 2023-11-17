@@ -14,6 +14,15 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Home Screen'),
       ),
+      body: Column(
+        children: [
+          TextField(),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Add todo'),
+          )
+        ],
+      ),
     );
   }
 }
