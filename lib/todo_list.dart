@@ -10,10 +10,12 @@ class TodoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TodosBloc, TodosState>(
       builder: (context, state) {
+        final todosBloc = BlocProvider.of<TodosBloc>(context);
         return ListView.builder(
-          itemCount: state.todos.length,
+          shrinkWrap: true,
+          itemCount: todosBloc.todos.length,
           itemBuilder: (context, index) => ListTile(
-            title: Text(state.todos[index].text),
+            title: Text(todosBloc.todos[index].text),
           ),
         );
       },

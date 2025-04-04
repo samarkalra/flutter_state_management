@@ -5,7 +5,5 @@ class Todo {
   String text;
   bool isCompleted;
 
-  Todo({required this.text, this.isCompleted = false}) {
-    id = const Uuid().v4();
-  }
+  Todo({required this.text, this.isCompleted = false}) : id = const Uuid().v4();
 }

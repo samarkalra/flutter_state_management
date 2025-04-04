@@ -1,5 +1,15 @@
-import 'package:state_management/model/todo.dart';
-
 abstract class TodosState {
-  List<Todo> todos = [];
+  const TodosState();
+}
+
+class TodosStateInitialState extends TodosState {}
+
+class TodoAddedState extends TodosState {
+  final String todoId;
+
+  const TodoAddedState({required this.todoId});
+}
+
+class TodoDeletedState extends TodosState {
+  const TodoDeletedState();
 }
