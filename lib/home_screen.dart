@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:state_management/bloc/counter_bloc.dart';
-import 'package:state_management/bloc/counter_events.dart';
 import 'package:state_management/bloc/counter_state.dart';
 import 'package:state_management/counter_widget.dart';
 
