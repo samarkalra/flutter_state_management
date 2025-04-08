@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:state_management/home_screen.dart';
+import 'package:state_management/state/persons_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         // useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      home: BlocProvider(
+        create: (_) => PersonsBloc(),
+        child: const HomeScreen(),
+      ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
