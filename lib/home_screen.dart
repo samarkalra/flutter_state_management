@@ -1,14 +1,25 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:state_management/state/fetch_result.dart';
 import 'package:state_management/state/load_action.dart';
 import 'package:state_management/state/persons_bloc.dart';
+import 'package:state_management/types/person.dart';
 import 'package:state_management/types/persons_url.dart';
 
 extension Subscript<T> on Iterable<T> {
   // Operator overloading
   T? operator [](int index) => length > index ? elementAt(index) : null;
 }
+
+Future<Iterable<Person>> getPersons(String url) => HttpClient()
+    .getUrl(Uri.parse(url))
+    .then((req) => req.close())
+    .then((resp) => resp.transform(utf8.decoder).join())
+    .then((str) => json.decode(str) as List<dynamic>)
+    .then((list) => list.map((e) => Person.fromJson(e)));
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,7 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
               TextButton(
                 onPressed: () {
                   context.read<PersonsBloc>().add(
-                        const LoadPersonsAction(url: PersonUrl.persons1),
+                        const LoadPersonsAction(
+                          url: persons1Url,
+                          loader: getPersons,
+                        ),
                       );
                 },
                 child: const Text('Load json #1'),
@@ -40,7 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
               TextButton(
                 onPressed: () {
                   context.read<PersonsBloc>().add(
-                        const LoadPersonsAction(url: PersonUrl.persons2),
+                        const LoadPersonsAction(
+                          url: persons2Url,
+                          loader: getPersons,
+                        ),
                       );
                 },
                 child: const Text('Load json #2'),
